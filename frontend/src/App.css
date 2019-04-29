@@ -31,3 +31,23 @@
     transform: rotate(360deg);
   }
 }
+
+main h2:first-child {
+  font-size: 2em;
+  margin: 10px 0;
+}
+
+.FirstApp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.App-Footer {
+  width: 100%;
+  height: 300px;
+  background-color: #222;
+  padding: 10px 0;
+}
