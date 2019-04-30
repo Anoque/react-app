@@ -1,5 +1,6 @@
 import React from 'react';
 import FirstOutput from "./FirstOutput";
+import FormOutputLoop from "./FormOutputLoop";
 var axios = require('axios');
 
 class FirstForm extends React.Component {
@@ -12,24 +13,27 @@ class FirstForm extends React.Component {
     this.setState({
       wtf: event.target.value
     });
-    this.search();
+    let promise = this.search();
   };
 
-  search() {
-    axios.get(`http://localhost:3012/search/${this.state.wtf}`)
+  async search() {
+    const data = await axios.get(`http://localhost:3012/search/${this.state.wtf}`)
       .then(function (response) {
-        console.log(response);
+        console.log('Response', response);
+        return response;
       })
       .catch(function (error) {
-        console.log(error);
-      })
+        console.error(error);
+        return [];
+      });
+    this.state.list = data.data;
   }
 
   render() {
     return (
       <div>
         <input type="text" name="wtf" onChange={this.onChange} />
-        <FirstOutput wtf={this.state.wtf} />
+        <FormOutputLoop list={this.state.list} />
       </div>
     );
   }

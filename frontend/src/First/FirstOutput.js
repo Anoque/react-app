@@ -2,7 +2,7 @@ import React from 'react';
 
 const FirstOutput = (props) => {
   return (
-    <div>
+    <div className="search-item">
       {props.wtf}
     </div>
   );
